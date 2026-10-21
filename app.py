@@ -31,9 +31,9 @@ if df is not None:
 
     # Clasificación de Plays según profundidad y Madurez según RoV
     def clasificar_play(depth):
-        if depth < 4900:
+        if depth < 3000:
             return 'Play subandino-Bermejo'
-        elif depth <= 6000:
+        elif depth <= 10000:
             return 'Play oriental ITT'
         else:
             return 'Play central-Libertador'
@@ -71,7 +71,7 @@ if df is not None:
             unidades_opciones = ["Todas las Unidades"] + sorted(list(df[col_unidad].dropna().unique()))
         else:
             unidades_opciones = ["Todas las Unidades"]
-        unidad_sel = st.selectbox(" Seleccionar Unidad Estratigráfica:", unidades_opciones)
+        unidad_sel = st.selectbox("🏛️ Seleccionar Unidad Estratigráfica:", unidades_opciones)
 
     # Filtrado dinámico acumulativo para la lista de pozos
     df_filtrado = df.copy()
@@ -142,13 +142,13 @@ if df is not None:
             fig_scatter.add_annotation(x=1.02, xref="paper", y=0.850, yref="y", text="<b>Maduro</b>", showarrow=False, font=dict(size=12))
             fig_scatter.add_annotation(x=1.02, xref="paper", y=1.250, yref="y", text="<b>Sobremaduro</b>", showarrow=False, font=dict(size=12))
 
-            # LÍNEAS VERTICALES DE LÍMITE DE PLAYS Y ETIQUETAS
-            fig_scatter.add_vline(x=4900, line_width=2, line_color="red")
-            fig_scatter.add_vline(x=6000, line_width=2, line_color="red")
+            # LÍNEAS VERTICALES DE LÍMITE DE PLAYS (3000 y 10000 ft) Y ETIQUETAS
+            fig_scatter.add_vline(x=3000, line_width=2, line_color="red")
+            fig_scatter.add_vline(x=10000, line_width=2, line_color="red")
 
-            fig_scatter.add_annotation(x=3500, y=1.55, text="<b>Play<br>Subandino-Bermejo</b>", showarrow=False, font=dict(size=13, color="black"), align="center")
-            fig_scatter.add_annotation(x=5450, y=1.55, text="<b>Play<br>Oriental-ITT</b>", showarrow=False, font=dict(size=13, color="black"), align="center")
-            fig_scatter.add_annotation(x=7000, y=1.55, text="<b>Play<br>Central-Libertador</b>", showarrow=False, font=dict(size=13, color="black"), align="center")
+            fig_scatter.add_annotation(x=1500, y=1.55, text="<b>Play<br>Subandino-Bermejo</b>", showarrow=False, font=dict(size=13, color="black"), align="center")
+            fig_scatter.add_annotation(x=6500, y=1.55, text="<b>Play<br>Oriental-ITT</b>", showarrow=False, font=dict(size=13, color="black"), align="center")
+            fig_scatter.add_annotation(x=11500, y=1.55, text="<b>Play<br>Central-Libertador</b>", showarrow=False, font=dict(size=13, color="black"), align="center")
 
             fig_scatter.update_xaxes(showgrid=True, gridwidth=0.5, gridcolor='LightGray')
             fig_scatter.update_yaxes(showgrid=True, gridwidth=0.5, gridcolor='LightGray', range=[0, 1.7])
