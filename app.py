@@ -98,7 +98,7 @@ if df is not None:
     m1, m2, m3, m4 = st.columns(4)
     m1.metric("Pozos Seleccionados", df_filtrado['Nombre del pozo'].nunique())
     m2.metric("Muestras Evaluadas", len(df_filtrado))
-    m3.metric("Profundidad Promedio", f"{df_filtrado[col_prof].mean():.1f} ft" if not df_filtrado.empty else "N/A")
+    m3.metric("Profundidad Promedio", f"{df_filtrado[col_prof].mean():.2f} ft" if not df_filtrado.empty else "N/A")
     m4.metric("%Ro Promedio", f"{df_filtrado[col_rov].mean():.2f}" if not df_filtrado.empty else "N/A")
 
     st.markdown("---")
@@ -178,6 +178,11 @@ if df is not None:
             )
             st.plotly_chart(fig_bar, use_container_width=True)
 
-        # TABLA DINÁMICA DE DATOS
+        # TABLA DINÁMICA DE DATOS FORMATEADA
         st.markdown("### 📋 Tabla Dinámica de Datos")
-        st.dataframe(df_filtrado.astype(str), use_container_width=True)
+        
+        df_tabla = df_filtrado.copy()
+        df_tabla[col_prof] = df_tabla[col_prof].apply(lambda x: f"{x:.2f}")
+        df_tabla[col_rov] = df_tabla[col_rov].apply(lambda x: f"{x:.2f}")
+        
+        st.dataframe(df_tabla, use_container_width=True)
