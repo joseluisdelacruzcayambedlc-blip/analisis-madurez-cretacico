@@ -71,7 +71,7 @@ if df is not None:
             unidades_opciones = ["Todas las Unidades"] + sorted(list(df[col_unidad].dropna().unique()))
         else:
             unidades_opciones = ["Todas las Unidades"]
-        unidad_sel = st.selectbox("🏛️ Seleccionar Unidad Estratigráfica:", unidades_opciones)
+        unidad_sel = st.selectbox(" Seleccionar Unidad Estratigráfica:", unidades_opciones)
 
     # Filtrado dinámico acumulativo para la lista de pozos
     df_filtrado = df.copy()
